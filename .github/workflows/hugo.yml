@@ -34,7 +34,7 @@ jobs:
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
 
       - name: Build site
-        run: hugo --source preview-site --minify --gc --baseURL "https://wugongrong.com/"
+        run: hugo --source preview-site --minify --gc --baseURL "https://918058825.github.io/wugongrong.com/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
