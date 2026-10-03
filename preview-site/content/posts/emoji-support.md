@@ -1,29 +1,29 @@
 ---
-author: "Hugo Authors"
-title: "Emoji Support"
+author: "Hugo 作者"
+title: "表情符号支持"
 date: "2019-03-05"
-description: "Guide to emoji usage in Hugo"
-tags: ["emoji"]
+description: "在 Hugo 网站中使用表情符号的方法"
+tags: ["表情符号"]
 ShowToc: false
 ShowBreadCrumbs: false
 ---
 
-Emoji can be enabled in a Hugo project in a number of ways.
+在 Hugo 项目中启用表情符号有几种方法。
 
 <!--more-->
 
-The [`emojify`](https://gohugo.io/functions/emojify/) function can be called directly in templates or [Inline Shortcodes](https://gohugo.io/templates/shortcode-templates/#inline-shortcodes).
+可以在模板或[内联短代码](https://gohugo.io/templates/shortcode-templates/#inline-shortcodes)中直接调用 [`emojify`](https://gohugo.io/functions/emojify/) 函数。
 
-To enable emoji globally, set `enableEmoji` to `true` in your site's [configuration](https://gohugo.io/getting-started/configuration/) and then you can type emoji shorthand codes directly in content files; e.g.
+若要全站启用表情符号，请在[站点配置](https://gohugo.io/getting-started/configuration/)中将 `enableEmoji` 设为 `true`。之后便可在内容文件中直接输入表情符号简码，例如：
 
 <p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
 <br>
 
-The [Emoji cheat sheet](http://www.emoji-cheat-sheet.com/) is a useful reference for emoji shorthand codes.
+可以查阅[表情符号速查表](http://www.emoji-cheat-sheet.com/)了解更多简码。
 
 ---
 
-**N.B.** The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.
+**注意：**上述步骤会在 Hugo 中启用 Unicode 标准表情符号，但具体显示效果取决于浏览器和设备平台。若要设置表情符号的样式，可以使用第三方表情字体或字体列表，例如：
 
 {{< highlight html >}}
 .emoji {

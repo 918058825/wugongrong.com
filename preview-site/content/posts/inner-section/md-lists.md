@@ -1,81 +1,71 @@
 ---
-title: "Markdown Lists"
+title: "Markdown 列表示例"
 date: 2024-06-01T12:00:00Z
 draft: false
 ---
 
-## Markdown Lists
+## 列表
 
-Markdown supports both ordered and unordered lists, as well as nested lists. Here's how you can create them:
+Markdown 支持有序列表、无序列表和多层嵌套列表，适合清楚地整理步骤与要点。
 
-### Ordered List
+### 有序列表
 
-1. First item
-2. Second item
-3. Third item
+1. 准备所需材料
+2. 按照步骤完成操作
+3. 检查最终结果
 
-### Unordered List
+### 无序列表
 
-- List item
-- Another item
-- And another item
+- 简洁明了
+- 层次清楚
+- 便于浏览
 
-### Nested Unordered list
+### 多层无序列表
 
-- Fruit
-  - Apple
-  - Orange
-- Dairy
-  - Milk
-  - Cheese
+- 水果
+  - 苹果
+  - 橙子
+- 乳制品
+  - 牛奶
+  - 奶酪
 
-### Nested Ordered list
+### 多层有序列表
 
-1. Fruit
-   - Apple
-   - Orange
-2. Dairy
-   1. Milk
-   2. Cheese
+1. 准备
+   - 确认目标
+   - 收集资料
+2. 执行
+   1. 完成第一步
+   2. 完成第二步
 
-### Mixed Nested Lists
+### 混合嵌套列表
 
-1. First item
-   - Sub item 1
-2. Second item
-   1. Sub item 1
-      - Sub sub item 1
-   2. Sub item 2
-3. Third item
-   - Sub item 1
-     1. Sub sub item 1
+1. 第一项
+   - 补充说明
+2. 第二项
+   1. 子步骤一
+      - 进一步说明
+   2. 子步骤二
+3. 第三项
+   - 补充说明
 
-### List with paragraphs, code blocks, and blockquotes
+### 列表中的段落、代码和引用
 
-- Item 1
+- 列表项也可以包含一段说明文字。
 
-  This is a paragraph within the first item.
-
-- Item 2
+- 代码示例：
 
   ```javascript
-  function helloWorld() {
-    console.log("Hello, World!");
+  function greet(name) {
+    return `你好，${name}！`;
   }
   ```
 
-- Item 3
-  > This is a blockquote within the third item.
+- 引用内容：
+  > 清晰的列表能让复杂信息更容易理解。
 
-### Lists with links, images, and other markdown content
+### 列表中的链接、图片和格式
 
-- Item 1
-  - Sub item with a [link](https://example.com)
-  - Sub item with an image ![alt text](https://placehold.co/600x200.png)
-- Item 2
-  - Sub item with **bold text**
-  - Sub item with _italic text_
-- Item 3
-  - Sub item with `inline code`
-  - Sub item with a blockquote > This is a blockquote within a sub item.
-    This flexibility allows you to create rich and organized content using Markdown lists.
+- 这是一个[示例链接](https://example.com)。
+- ![示例图片](https://placehold.co/600x200.png)
+- **粗体文字**、_斜体文字_和`行内代码`都可以用于列表内容。

@@ -1,0 +1,21 @@
+{{- with site.Params.homeInfoParams }}
+<section class="profile-card" aria-labelledby="profile-title">
+  <div class="profile-avatar" aria-hidden="true"><span>记</span></div>
+  <div class="profile-copy">
+    <h1 id="profile-title">{{ .Title | markdownify }} <small>{{ .Subtitle }}</small></h1>
+    <p class="profile-role"><span class="accent-dot"></span>{{ .Role }}</p>
+    <p class="profile-summary">{{ .Content }}</p>
+    <div class="profile-divider"><span></span></div>
+    <ul class="profile-topics" aria-label="关注主题">
+      {{- range .Topics }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="about-card" aria-labelledby="about-card-title">
+  <h2 id="about-card-title"><span class="accent-dot"></span>我是谁</h2>
+  <div class="about-card-content">
+    {{- range .IntroLines }}<p>{{ . | markdownify }}</p>{{ end }}
+  </div>
+</section>
+{{- end -}}

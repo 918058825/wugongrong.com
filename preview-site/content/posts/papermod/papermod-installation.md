@@ -1,164 +1,95 @@
 ---
-title: "PaperMod Installation Guide"
-summary: "Step by step guide to install and update PaperMod in your Hugo site."
+title: "PaperMod 安装指南"
+summary: "在 Hugo 网站中安装和更新 PaperMod 主题的步骤说明。"
 date: 2021-01-20
 weight: 1
-series: ["PaperMod"]
+series: ["PaperMod 主题"]
 aliases: ["/papermod-installation"]
-tags: ["PaperMod", "Docs"]
+tags: ["PaperMod", "文档"]
 author: ["Aditya Telange"]
-
 social:
   fediverse_creator: "@adityatelange@mastodon.social"
 ---
 
-> - **We'll be using `yml/yaml` format for all examples down below, it is recommend to use `yaml` over `toml` as it is easier to read.**
-> - You can find any [YML to TOML](https://www.google.com/search?q=yml+to+toml) converters if needed.
+> 本指南使用 `yaml` 配置格式。与 `toml` 相比，`yaml` 更容易阅读；需要转换格式时，可以使用 [YAML 转 TOML 工具](https://www.google.com/search?q=yml+to+toml)。
 
----
+## 开始之前 🚀
 
-## Getting Started 🚀
+先按照 [Hugo 快速入门指南](https://gohugo.io/getting-started/quick-start/)安装 Hugo。PaperMod 使用了较新的 Hugo 功能，请安装 [Hugo v0.146.0 或更新版本](https://github.com/gohugoio/hugo/releases)。在终端运行 `hugo version` 可以查看当前版本。
 
-1. **Follow [Hugo Docs's - Quick Start](https://gohugo.io/getting-started/quick-start/) guide to install {{< inTextImg url="https://raw.githubusercontent.com/gohugoio/hugoDocs/master/static/img/hugo-logo.png" height="14" >}}.**
-   <br>(Make sure you install [**Hugo v0.146.0 +**](https://github.com/gohugoio/hugo/releases) as PaperMod uses some of the latest features of Hugo. You can check your Hugo version by running `hugo version` in terminal.)
+## 创建 Hugo 网站
 
-2. **Create a new {{< inTextImg url="https://raw.githubusercontent.com/gohugoio/hugoDocs/master/static/img/hugo-logo.png" height="14" >}} site**
+```bash
+hugo new site MyFreshWebsite --format yaml
+```
 
-   ```bash
-   hugo new site MyFreshWebsite --format yaml
-   # replace MyFreshWebsite with name of your website
-   ```
+将 `MyFreshWebsite` 换成你的网站名称。较旧版本的 Hugo 可能不支持 `--format yaml`，详情请参阅 [hugo new site 命令文档](https://gohugo.io/commands/hugo_new_site/#synopsis)。
 
-   Note:
-   - Older versions of Hugo may not support `--format yaml`
-   - Read more here about [Hugo Docs's - hugo new site command](https://gohugo.io/commands/hugo_new_site/#synopsis)
+## 安装 PaperMod
 
-3. **Installing/Updating PaperMod**
-   - Themes reside in `MyFreshWebsite/themes` directory.
-   - PaperMod will be installed in `MyFreshWebsite/themes/PaperMod`
+### 方法一：使用 Git 克隆
 
-   > {{< collapse summary="**Expand Method 1 - Git Clone**" >}}
+在网站目录中运行：
 
-   **INSTALL** : Inside the folder of your Hugo site `MyFreshWebsite`, run:
+```bash
+git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+```
 
-   ```bash
-   git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
-   ```
+如果要固定使用某个版本，可以在命令末尾添加 `--branch v7.0`。更新主题时进入 `themes/PaperMod` 并运行 `git pull`。
 
-   You may use ` --branch v7.0` to end of above command if you want to stick to specific release.
+### 方法二：使用 Git 子模块
 
-   **UPDATE**: Inside the folder of your Hugo site `MyFreshWebsite`, run:
+```bash
+git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+git submodule update --init --recursive
+```
 
-   ```bash
-   cd themes/PaperMod
-   git pull
-   ```
+更新主题时运行：
 
-   {{</ collapse >}}
+```bash
+git submodule update --remote --merge
+```
 
-   > {{< collapse summary="**Expand Method 2 - Git Submodule (recomended)**" >}}
+了解更多请参阅 [Git 子模块指南](https://www.atlassian.com/git/tutorials/git-submodule)。
 
-   **INSTALL** : Inside the folder of your Hugo site `MyFreshWebsite`, run:
+### 方法三：下载压缩包
 
-   ```bash
-   git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
-   git submodule update --init --recursive # needed when you reclone your repo (submodules may not get cloned automatically)
-   ```
+从 [GitHub Releases](https://github.com/adityatelange/hugo-PaperMod/releases)下载主题压缩包，解压到网站的 `themes` 目录中。
 
-   You may use ` --branch v7.0` to end of above command if you want to stick to specific release.
-   Read more about git submodules [here](https://www.atlassian.com/git/tutorials/git-submodule).
+### 方法四：使用 Hugo 模块
 
-   **UPDATE**: Inside the folder of your Hugo site `MyFreshWebsite`, run:
+先安装 [Go](https://go.dev/doc/install)，然后在网站目录中初始化模块：
 
-   ```bash
-   git submodule update --remote --merge
-   ```
+```bash
+hugo mod init YOUR_OWN_GIT_REPOSITORY
+```
 
-   {{</ collapse >}}
+在 `hugo.yaml` 中添加主题模块：
 
-   > {{< collapse summary="**Expand Method 3 - Download an unzip**" >}}
+```yaml
+module:
+  imports:
+    - path: github.com/adityatelange/hugo-PaperMod
+```
 
-   Download PaperMod source as Zip from Github Releases and extract in your themes directory at `MyFreshWebsite/themes/PaperMod`
+运行 `hugo mod get -u` 更新主题。更多说明请参阅 [Hugo 模块文档](https://gohugo.io/hugo-modules/use-modules/)。
 
-   Direct Links:
-   - [Master Branch (Latest)](https://github.com/adityatelange/hugo-PaperMod/archive/master.zip)
-   - [v7.0](https://github.com/adityatelange/hugo-PaperMod/archive/v7.0.zip)
-   - [v6.0](https://github.com/adityatelange/hugo-PaperMod/archive/v6.0.zip)
-   - [v5.0](https://github.com/adityatelange/hugo-PaperMod/archive/v5.0.zip)
-   - [v4.0](https://github.com/adityatelange/hugo-PaperMod/archive/v4.0.zip)
-   - [v3.0](https://github.com/adityatelange/hugo-PaperMod/archive/v3.0.zip)
-   - [v2.0](https://github.com/adityatelange/hugo-PaperMod/archive/v2.0.zip)
-   - [v1.0](https://github.com/adityatelange/hugo-PaperMod/archive/v1.0.zip)
+## 在网站中启用主题
 
-   {{</ collapse >}}
+在 `hugo.yaml` 中设置：
 
-   > {{< collapse summary="**Expand Method 4 - Hugo module**" >}}
+```yaml
+theme: ["PaperMod"]
+```
 
-   **INSTALL** :
-   - Install [Go programming language](https://go.dev/doc/install) in your operating system.
+首次安装后，网站内容还是空白的。你可以查看 [PaperMod 示例站源码](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite)，并阅读[安装文档](https://github.com/adityatelange/hugo-PaperMod/wiki/Installation)、[功能说明](https://github.com/adityatelange/hugo-PaperMod/wiki/Features)、[常见问题](https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs)、[图标说明](https://github.com/adityatelange/hugo-PaperMod/wiki/Icons)、[配置变量](https://github.com/adityatelange/hugo-PaperMod/wiki/Variables)和[模板自定义指南](https://github.com/adityatelange/hugo-PaperMod/wiki/Template_Overrides)。
 
-   - Intialize your own hugo mod
+## 支持项目 🫶
 
-   ```bash
-   hugo mod init YOUR_OWN_GIT_REPOSITORY
-   ```
+- 在 [GitHub 仓库](https://github.com/adityatelange/hugo-PaperMod)为 PaperMod 点亮星标。
+- 在[社交媒体](https://x.com/intent/tweet/?text=Checkout%20Hugo%20PaperMod)分享主题。
+- 通过 [GitHub Sponsors](https://github.com/sponsors/adityatelange)或 [Ko-fi](https://ko-fi.com/adityatelange)支持维护者。
 
-   - Add PaperMod in your `hugo.yaml` file
+## 相关视频
 
-   ```go {linenos=true}
-   module:
-     imports:
-     - path: github.com/adityatelange/hugo-PaperMod
-   ```
-
-   **UPDATE**:
-
-   ```bash
-   hugo mod get -u
-   ```
-
-   Read more : [Hugo Docs's - HUGO MODULES](https://gohugo.io/hugo-modules/use-modules/)
-
-   {{</ collapse >}}
-
-4. **Finally set theme as PaperMod in your site config**
-
-   In `hugo.yaml` add:
-
-   ```yml {linenos=true}
-   theme: ["PaperMod"]
-   ```
-
-### Next up - Customizing PaperMod to suit your preferences 🎨
-
-- Your site will be blank after you set up for the very first time.
-- You may go through this website's source code - [PaperMod's exampleSite's source](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite)
-- You can also refer to the following wiki pages for detailed documentation on all features and configuration options.
-
-| Topic                                                                                             | Description                                     |
-| ------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| **[Installation guide](https://github.com/adityatelange/hugo-PaperMod/wiki/Installation)**        | Detailed installation and update instructions   |
-| **[Features wiki page](https://github.com/adityatelange/hugo-PaperMod/wiki/Features)**            | In-depth explanations of all features           |
-| **[FAQ wiki](https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs)**                          | Common questions and configuration walkthroughs |
-| **[Icons wiki](https://github.com/adityatelange/hugo-PaperMod/wiki/Icons)**                       | Documentation for social icons and share icons  |
-| **[Variables wiki](https://github.com/adityatelange/hugo-PaperMod/wiki/Variables)**               | List of all available template variables        |
-| **[Overiding templates](https://github.com/adityatelange/hugo-PaperMod/wiki/Template_Overrides)** | Guide to customizing templates without forking  |
-| **[Releases](https://github.com/adityatelange/hugo-PaperMod/releases)**                           | Detailed history of releases                    |
-
----
-
-## Support 🫶
-
-- Star 🌟 PaperMod's [Github repository](https://github.com/adityatelange/hugo-PaperMod).
-- Help spread the word about PaperMod by [sharing it on social media](https://x.com/intent/tweet/?text=Checkout%20Hugo%20PaperMod%20%E2%9C%A8%0AA%20fast,%20clean,%20responsive%20Hugo%20theme.&url=https://github.com/adityatelange/hugo-PaperMod&hashtags=Hugo,PaperMod) and recommending it to your friends. 🗣️
-- You can also sponsor 🏅 on [Github Sponsors](https://github.com/sponsors/adityatelange) / [Ko-Fi](https://ko-fi.com/adityatelange).
-
----
-
-## Videos featuring PaperMod
-
-You can go through few videos which are available on YouTube for getting to know the creator's thoughts as well as the setup process.
-
-▶️ [Curated list of videos about PaperMod](https://youtube.com/playlist?list=PLeiDFxcsdhUrzkK5Jg9IZyiTsIMvXxKZP)
-
----
+在 [YouTube 播放列表](https://youtube.com/playlist?list=PLeiDFxcsdhUrzkK5Jg9IZyiTsIMvXxKZP)中观看 PaperMod 介绍和配置教程。

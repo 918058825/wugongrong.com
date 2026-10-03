@@ -1,0 +1,76 @@
+{{- define "main" }}
+<div class="about-page">
+  <header class="about-head">
+    <div class="about-head-card">
+      <img class="about-avatar" src="{{ "images/avatar-wugongrong.jpg" | absURL }}" alt="吴功荣" width="160" height="160" fetchpriority="high">
+      <div class="about-head-main">
+        <h1 class="about-name">吴功荣<span class="about-name-note">吴工</span></h1>
+        <p class="about-role">蓝牙领域小门童· 深圳</p>
+        <p class="about-tagline">记录思考，学习，写作，分享一些折腾经历</p>
+        <span class="about-divider" aria-hidden="true"></span>
+        <div class="about-focus" aria-label="关注方向">
+          <span class="about-focus-chip">写作</span>
+          <span class="about-focus-chip">工具折腾</span>
+          <span class="about-focus-chip">思考</span>
+          <span class="about-focus-chip">观察</span>
+          <span class="about-focus-chip">蓝牙</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="about-body">
+    <section class="about-section">
+      <h2>我是谁</h2>
+      <p>我叫吴功荣，是一名嵌入式软件工程师，目前主要在深圳做tws耳机方案。</p>
+      <p>平时比较喜欢折腾，AI、软件、网站、数码这些东西都会研究一点。也喜欢看一些乱七八糟的文章，遇到感兴趣的问题就会多想一会。</p>
+      <p>这个网站主要用来记录自己折腾过的东西，偶尔写写技术，也写一些自己的想法。</p>
+      <p><strong>没什么固定主题，想到什么写什么。</strong></p>
+    </section>
+    <section class="about-section">
+      <h2>平台</h2>
+      <ul class="about-link-list">
+        {{- range .Params.platforms }}
+        <li>
+          {{- if .url }}
+          <a class="about-link-row" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span><span class="about-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          {{- else if .qr }}
+          <a class="about-link-row" href="{{ .qr | relURL }}" target="_blank" rel="noopener noreferrer" aria-label="查看{{ .name }}二维码">
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span><span class="about-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          {{- else }}
+          <span class="about-link-row about-link-pending">
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span>
+          </span>
+          {{- end }}
+        </li>
+        {{- end }}
+      </ul>
+    </section>
+    <section class="about-section">
+      <h2>联系</h2>
+      <ul class="about-link-list">
+        {{- range .Params.contacts }}
+        <li>
+          {{- if .url }}
+          <a class="about-link-row" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span><span class="about-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          {{- else if .qr }}
+          <a class="about-link-row" href="{{ .qr | relURL }}" target="_blank" rel="noopener noreferrer" aria-label="查看{{ .name }}二维码">
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span><span class="about-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          {{- else }}
+          <span class="about-link-row about-link-pending">
+            <span class="about-link-title">{{ .name }}</span><span class="about-link-note">{{ .note }}</span>
+          </span>
+          {{- end }}
+        </li>
+        {{- end }}
+      </ul>
+    </section>
+  </div>
+</div>
+{{- end }}

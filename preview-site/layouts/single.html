@@ -1,0 +1,120 @@
+{{- define "main" }}
+
+<article class="post-single{{ if .Params.archive_sync }} archive-post{{ end }}">
+  <header class="post-header">
+    {{- if .Params.archive_sync }}
+    <nav class="archive-post-breadcrumbs" aria-label="面包屑导航">
+      <a href="{{ site.Home.RelPermalink }}">首页</a>
+      <span aria-hidden="true">›</span>
+      {{- $categories := .GetTerms "categories" }}
+      {{- with $categories }}
+      <a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>
+      {{- else }}
+      <a href="{{ "archive/" | relURL }}">归档</a>
+      {{- end }}
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">{{ .Title }}</span>
+    </nav>
+    {{- else }}
+    {{ partial "breadcrumbs.html" . }}
+    {{- end }}
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="草稿">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h1>
+    {{- if and .Description (not .Params.archive_sync) }}
+    <div class="post-description">
+      {{ .Description }}
+    </div>
+    {{- end }}
+    {{- if not (.Param "hideMeta") }}
+    {{- if .Params.archive_sync }}
+    {{- $charCount := len (split (strings.TrimSpace .Plain) "") }}
+    {{- $readMinutes := math.Ceil (div (math.Max $charCount 1) 330) }}
+    <div class="post-meta archive-post-meta">
+      <span class="archive-post-meta-main">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">发布于 {{ .Date.Format "2006-01-02" }}</time>
+        <span aria-hidden="true">·</span>
+        <span>约 {{ $charCount }} 字</span>
+        <span aria-hidden="true">·</span>
+        <span>读 {{ $readMinutes }} 分钟</span>
+      </span>
+      <span class="archive-post-chips">
+        {{- range .GetTerms "categories" }}
+        <a class="archive-post-chip archive-post-chip-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{- end }}
+        {{- range .GetTerms "tags" }}
+        <a class="archive-post-chip archive-post-chip-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{- end }}
+      </span>
+    </div>
+    {{- else }}
+    <div class="post-meta">
+      {{- partial "post_meta.html" . -}}
+      {{- partial "translation_list.html" . -}}
+      {{- partial "edit_post.html" . -}}
+      {{- partial "post_canonical.html" . -}}
+    </div>
+    {{- end }}
+    {{- end }}
+  </header>
+  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+  {{- if and .Params.archive_sync (.Param "ShowToc") (gt (len (findRE "<li>" .TableOfContents)) 0) }}
+  <button type="button" class="archive-toc-button" aria-label="打开目录" aria-expanded="false" aria-controls="archive-toc-dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+  <dialog class="archive-toc-dialog" id="archive-toc-dialog" aria-labelledby="archive-toc-title">
+    <div class="archive-toc-head">
+      <h2 id="archive-toc-title">目录</h2>
+      <button type="button" class="archive-toc-close" aria-label="关闭目录" data-archive-toc-close>×</button>
+    </div>
+    <nav class="archive-toc-nav" aria-label="文章目录">{{ .TableOfContents }}</nav>
+  </dialog>
+  {{- else if and (not .Params.archive_sync) (.Param "ShowToc") }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  {{- partial "extend_post_content.html" . }}
+
+  <footer class="post-footer">
+    {{- if not .Params.archive_sync }}
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+    {{- partial "share_icons.html" . -}}
+    {{- end }}
+  </footer>
+
+  {{- if (.Param "comments") }}
+  {{- partial "comments.html" . }}
+  {{- end }}
+</article>
+{{- if .Params.archive_sync }}<script src="{{ "js/archive-toc.js" | relURL }}" defer></script>{{ end }}
+
+{{- end }}{{/* end main */}}

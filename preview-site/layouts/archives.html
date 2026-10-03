@@ -1,0 +1,41 @@
+{{- define "main" }}
+{{- $pages := where site.RegularPages "Params.archive_sync" true }}
+<div class="archive-page">
+  <header class="page-header archive-page-header">
+    <h1>{{ .Title }}</h1>
+    <p class="archive-summary">共 <strong>{{ len $pages }}</strong> 篇文章 · 按年份和月份整理</p>
+  </header>
+
+  <section class="archive-timeline" aria-label="文章时间线">
+    {{- range $pages.GroupByPublishDate "2006" }}
+    {{- if ne .Key "0001" }}
+    {{- $year := .Key }}
+    <details class="archive-year-block" open>
+      <summary class="archive-year-summary">
+        <span class="archive-year-label">{{ $year }}</span>
+        <span class="archive-count">{{ len .Pages }} 篇</span>
+      </summary>
+      <div class="archive-year-list">
+        {{- range .Pages.GroupByDate "01" }}
+        <details class="archive-month-group" open>
+          <summary class="archive-month-summary">
+            <span class="archive-month-label">{{ strings.TrimPrefix "0" .Key }}月</span>
+            <span class="archive-count">{{ len .Pages }} 篇</span>
+          </summary>
+          <div class="archive-month-list">
+            {{- range .Pages.ByParam "archive_order" }}
+            <a class="archive-item" href="{{ .RelPermalink }}">
+              <time class="archive-item-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>
+              <span class="archive-item-title">{{ .Title }}</span>
+            </a>
+            {{- end }}
+          </div>
+        </details>
+        {{- end }}
+      </div>
+    </details>
+    {{- end }}
+    {{- end }}
+  </section>
+</div>
+{{- end }}

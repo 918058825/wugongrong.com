@@ -1,123 +1,120 @@
 ---
-author: "Hugo Authors"
-title: "Markdown Syntax Guide"
+author: "Hugo 作者"
+title: "Markdown 语法指南"
 date: "2019-03-11"
-description: "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
-tags: ["markdown", "css", "html", "themes"]
-categories: ["themes", "syntax"]
-series: ["Themes Guide"]
+description: "通过示例了解 Markdown 基础语法，以及 HTML 元素在主题中的显示效果。"
+tags: ["Markdown", "样式", "HTML", "主题"]
+categories: ["主题", "语法"]
+series: ["主题指南"]
 aliases: ["migrate-from-jekyl"]
-# cover:
-#   image: images/msg.png
-#   caption: "Generated using [OG Image Playground by Vercel](https://og-playground.vercel.app/)"
 ShowToc: true
 TocOpen: true
 weight: 2
 ---
 
-This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
+本文介绍 Hugo 内容文件中常用的 Markdown 语法，并展示主题对基础 HTML 元素的样式处理。
 
 <!--more-->
 
-## Headings
+## 标题
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+HTML 的 `<h1>` 到 `<h6>` 表示六级标题，其中 `<h1>` 层级最高，`<h6>` 层级最低。
 
-# H1
+# 一级标题
 
-## H2
+## 二级标题
 
-### H3
+### 三级标题
 
-#### H4
+#### 四级标题
 
-##### H5
+##### 五级标题
 
-###### H6
+###### 六级标题
 
-## Paragraph
+## 段落
 
-Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
+段落用于表达完整的想法。合理控制段落长度，并在不同主题之间留出间隔，可以让页面更容易阅读。
 
-Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
+在 Markdown 中，段落之间空一行即可分段。行内也可以使用**粗体**、_斜体_和`代码`等格式。
 
-## Blockquotes
+## 引用
 
-The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
+引用元素用于呈现来自其他来源的内容，也可以在引用文字中使用 Markdown 格式。
 
-#### Blockquote without attribution
+#### 普通引用
 
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-> **Note** that you can use _Markdown syntax_ within a blockquote.
+> 阅读和交流能帮助我们更好地分享想法。
+> **提示：**引用中也可以使用 _Markdown 语法_。
 
-#### Blockquote with attribution
+#### 带出处的引用
 
-> Don't communicate by sharing memory, share memory by communicating.
+> 不要只分享记忆，也要通过交流共同创造记忆。
 >
 > — <cite>Rob Pike[^1]</cite>
 
-[^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
+[^1]: 引文节选自 Rob Pike 于 2015 年 11 月 18 日在 Gopherfest 上的[演讲](https://www.youtube.com/watch?v=PAAkCSZUG1c)。
 
-## Tables
+## 表格
 
-Tables aren't part of the core Markdown spec, but Hugo supports them out-of-the-box.
+Markdown 表格可以清楚地展示多列信息。
 
-| Name  | Age |
-| ----- | --- |
-| Bob   | 27  |
-| Alice | 23  |
+| 姓名 | 年龄 |
+| --- | ---: |
+| 小明 | 27 |
+| 小红 | 23 |
 
-#### Inline Markdown within tables
+#### 表格中的行内格式
 
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| 斜体 | 粗体 | 代码 |
+| --- | --- | --- |
+| _斜体文字_ | **粗体文字** | `代码片段` |
 
-## List Types
+## 列表类型
 
-#### Ordered List
+#### 有序列表
 
-1. First item
-2. Second item
-3. Third item
+1. 第一项
+2. 第二项
+3. 第三项
 
-#### Unordered List
+#### 无序列表
 
-- List item
-- Another item
-- And another item
+- 列表项
+- 另一个列表项
+- 最后一个列表项
 
-#### Nested Unordered list
+#### 嵌套无序列表
 
-- Fruit
-  - Apple
-  - Orange
-  - Banana
-- Dairy
-  - Milk
-  - Cheese
+- 水果
+  - 苹果
+  - 橙子
+  - 香蕉
+- 乳制品
+  - 牛奶
+  - 奶酪
 
-#### Nested Ordered list
+#### 嵌套有序列表
 
-1. Fruit
-    - Apple
-    - Orange
-    - Banana
-2. Dairy
-    1. Milk
-    2. Cheese
-3. Third item
-    1. Sub One
-    2. Sub Two
+1. 水果
+   - 苹果
+   - 橙子
+   - 香蕉
+2. 乳制品
+   1. 牛奶
+   2. 奶酪
+3. 其他
+   1. 第一项
+   2. 第二项
 
-## Other Elements — abbr, sub, sup, kbd, mark
+## 其他元素：缩写、下标、上标、按键和标记
 
-<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
+<abbr title="图形交换格式">GIF</abbr> 是一种位图图像格式。
 
-H<sub>2</sub>O
+水的化学式是 H<sub>2</sub>O。
 
-X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
+勾股定理可以写作：X<sup>2</sup> + Y<sup>2</sup> = Z<sup>2</sup>。
 
-Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
+按 <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Delete</kbd></kbd> 结束当前会话。
 
-Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+许多 <mark>蝾螈</mark> 在夜间活动，以昆虫、蠕虫和其他小型生物为食。

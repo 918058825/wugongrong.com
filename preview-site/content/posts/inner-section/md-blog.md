@@ -1,35 +1,35 @@
 ---
-title: "Sample Markdown Blog Post"
+title: "Markdown 博客示例"
 date: 2024-06-01T12:00:00Z
 ---
 
-## Sample Markdown Blog Post
+## Markdown 博客示例
 
-A sample blog post to test markdown rendering in PaperMod. This post includes various markdown elements such as headings, images, and code blocks. The content is meant to verify that all markdown features are displayed correctly in the theme.
+这是一篇用于展示 PaperMod 排版效果的示例文章，包含标题、图片、代码块和表格等常见元素。
 
-### Sample Heading
+### 示例标题
 
-Knock knock. Who's there? Lettuce. Lettuce who? Lettuce in, it's cold out here!
+好的文章结构能帮助读者快速找到想看的内容。
 
-![Sample Image](https://placehold.co/800x200)
+![示例图片](https://placehold.co/800x200)
 
 ```javascript
 function greet(name) {
-    return `Hello, ${name}!`;
+    return `你好，${name}！`;
 }
-console.log(greet('World'));
+console.log(greet('世界'));
 ```
 
 ```python {hl_lines="2",linenos="table"}
 def greet(name):
-    return f"Hello, {name}!"
+    return f"你好，{name}！"
 
-print(greet("World"))
+print(greet("世界"))
 ```
 
-#### Another Heading
+#### 另一节内容
 
-| This is a table | With some data |
-|-----------------|----------------|
-| Row 1           | Data 1         |
-| Row 2           | Data 2         |
+| 项目 | 示例内容 |
+| --- | --- |
+| 第一行 | 示例一 |
+| 第二行 | 示例二 |
